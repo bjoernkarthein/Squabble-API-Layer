@@ -1,0 +1,28 @@
+{
+  "name": "quizgame-backend",
+  "version": "1.0.0",
+  "description": "backend for quizgame plugin",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "./node_modules/.bin/nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bjoernkarthein/QuizGame-Backend.git"
+  },
+  "author": "Björn Karthein",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/bjoernkarthein/QuizGame-Backend/issues"
+  },
+  "homepage": "https://github.com/bjoernkarthein/QuizGame-Backend#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "mssql": "^7.1.3",
+    "mysql": "^2.18.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.9"
+  }
+}
