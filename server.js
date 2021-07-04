@@ -2,7 +2,6 @@ var express = require("express");
 var app = express();
 const PORT = 5000;
 var mysql = require("mysql");
-const path = require("path");
 
 var db = mysql.createConnection({
   host: "localhost",
@@ -23,20 +22,16 @@ app.get("/", function (req, res) {
 
     console.log("Data received from Db:");
     console.log(rows);
-    res.send(rows);
+    res.json(rows);
   });
 });
 
-app.get("/authors", function (req, res) {
-  db.query("SELECT * FROM authors", (err, rows) => {
-    if (err) throw err;
-
-    console.log("Data received from Db:");
-    console.log(rows);
-    res.send(rows);
-  });
-});
+// Importing the different endpoints
+require("./endpoints/authors")(app, db);
 
 app.listen(PORT, function () {
   console.log("Server is running..");
 });
+
+exports.database = db;
+exports.app = app;
