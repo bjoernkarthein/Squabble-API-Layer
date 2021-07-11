@@ -2,19 +2,18 @@ var express = require("express");
 var app = express();
 const PORT = 5000;
 var mysql = require("mysql");
+var config = require("./config");
+var bodyParser = require("body-parser");
 
-var db = mysql.createConnection({
-  host: "localhost",
-  user: "root",
-  password: "rootPass1298",
-  port: 3306,
-  database: "quiz_game",
-});
+var db = mysql.createConnection(config.databaseCredentials);
 
 db.connect(function (err) {
   if (err) throw err;
   console.log("Connected to database quiz_game");
 });
+
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
 app.get("/", function (req, res) {
   db.query("SHOW TABLES", (err, rows) => {
@@ -28,10 +27,8 @@ app.get("/", function (req, res) {
 
 // Importing the different endpoints
 require("./endpoints/authors")(app, db);
+require("./endpoints/users")(app, db);
 
 app.listen(PORT, function () {
   console.log("Server is running..");
 });
-
-exports.database = db;
-exports.app = app;

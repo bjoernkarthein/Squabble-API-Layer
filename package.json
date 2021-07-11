@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/bjoernkarthein/QuizGame-Backend#readme",
   "dependencies": {
+    "body-parser": "^1.19.0",
     "express": "^4.17.1",
     "mssql": "^7.1.3",
     "mysql": "^2.18.1"
