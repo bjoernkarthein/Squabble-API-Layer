@@ -26,7 +26,6 @@ app.get("/", function (req, res) {
 });
 
 // Importing the different endpoints
-require("./endpoints/authors")(app, db);
 require("./endpoints/users")(app, db);
 
 app.listen(PORT, function () {
