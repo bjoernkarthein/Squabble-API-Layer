@@ -21,6 +21,7 @@ module.exports = function (app, db) {
   });
 
   app.post("/users", function (req, res) {
+    console.log(req.body.user);
     const user = req.body.user;
     var values = [
       user.id,
@@ -28,9 +29,10 @@ module.exports = function (app, db) {
       user.firstname,
       user.lastname,
       user.username,
+      user.token,
     ];
     db.query(
-      "INSERT INTO users (id, email, firstname, lastname, username) VALUES (?)",
+      "INSERT INTO users (id, email, firstname, lastname, username, token) VALUES (?)",
       [values],
       (err, result) => {
         if (err) throw err;
