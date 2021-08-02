@@ -27,7 +27,8 @@ app.get("/", function (req, res) {
 
 // Importing the different endpoints
 require("./endpoints/users")(app, db);
-require("./endpoints/webuserattempts")(app, db);
+require("./endpoints/single_player_attempts")(app, db);
+require("./endpoints/multi_player_attempts")(app, db);
 
 app.listen(PORT, function () {
   console.log("Server is running..");

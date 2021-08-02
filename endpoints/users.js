@@ -20,6 +20,21 @@ module.exports = function (app, db) {
     });
   });
 
+  app.get("/users/random/:id", function (req, res) {
+    const id = req.params.id;
+    db.query("SELECT * FROM users WHERE NOT id=?", id, (err, rows) => {
+      if (err) throw err;
+      console.log("Data received from Db:");
+      console.log(rows);
+      if (rows.length <= 0) {
+        res.err("no other users found");
+      } else {
+        const index = Math.floor(Math.random() * rows.length);
+        res.json(rows[index]);
+      }
+    });
+  });
+
   app.post("/users", function (req, res) {
     console.log(req.body.user);
     const user = req.body.user;
