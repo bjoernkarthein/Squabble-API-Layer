@@ -12,7 +12,7 @@ module.exports = function (app, db) {
   app.get("/multi_player_attempts/:gid", function (req, res) {
     const id = req.params.gid;
     db.query(
-      "SELECT * FROM multi_player_attempts WHERE gid=?",
+      "SELECT * FROM multi_player_attempts INNER JOIN users ON multi_player_attempts.opponentId=users.id WHERE gid=?",
       id,
       (err, rows) => {
         if (err) throw err;
@@ -80,15 +80,42 @@ module.exports = function (app, db) {
       data.inProgress,
       data.currentRound,
       data.nextTurnId,
-      data.questionIndex,
+      data.questionsAreSet,
+      data.turns,
     ];
 
     db.query(
-      "INSERT INTO multi_player_attempts (initiatorId, opponentId, courseId, inProgress, currentRound, nextTurnId, questionsIndex) VALUES (?)",
+      "INSERT INTO multi_player_attempts (initiatorId, opponentId, courseId, inProgress, currentRound, nextTurnId, questionsAreSet, turns) VALUES (?)",
       [values],
       (err, result) => {
         if (err) throw err;
         console.log("Number of records inserted: " + result.affectedRows);
+        res.json(data);
+      }
+    );
+  });
+
+  app.put("/multi_player_attempts", function (req, res) {
+    console.log(req.body);
+    const data = req.body.mpa;
+    const values = [
+      data.initiatorId,
+      data.opponentId,
+      data.courseId,
+      data.inprogress,
+      data.currentRound,
+      data.nextTurnId,
+      data.questionsAreSet,
+      data.turns,
+      data.gameId,
+    ];
+
+    db.query(
+      "UPDATE multi_player_attempts SET initiatorId = ?, opponentId = ?, courseId = ?, inProgress = ?, currentRound = ?, nextTurnId = ?, questionsAreSet = ?, turns = ? WHERE gid = ?",
+      values,
+      (err, result) => {
+        if (err) throw err;
+        console.log("Number of records changed: " + result.affectedRows);
         res.json(data);
       }
     );
