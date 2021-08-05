@@ -58,7 +58,7 @@ module.exports = function (app, db) {
     const cid = req.params.cid;
     const uid = req.params.uid;
     db.query(
-      "SELECT * FROM multi_player_attempts INNER JOIN users ON multi_player_attempts.opponentId=users.id WHERE courseId=? AND (initiatorId=? OR opponentId=?);",
+      "SELECT * FROM multi_player_attempts WHERE courseId=? AND (initiatorId=? OR opponentId=?);",
       [cid, uid, uid],
       (err, rows) => {
         if (err) throw err;

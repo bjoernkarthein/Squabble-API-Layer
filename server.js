@@ -30,6 +30,7 @@ require("./endpoints/users")(app, db);
 require("./endpoints/single_player_attempts")(app, db);
 require("./endpoints/multi_player_attempts")(app, db);
 require("./endpoints/multi_player_game_questions")(app, db);
+require("./endpoints/multi_player_game_answers")(app, db);
 
 app.listen(PORT, function () {
   console.log("Server is running..");
