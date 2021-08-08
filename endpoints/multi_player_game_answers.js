@@ -45,7 +45,6 @@ module.exports = function (app, db) {
     const data = req.body.mpa;
     var values = [
       data.gameId,
-      data.attemptId,
       data.roundNumber,
       data.questionSlot,
       data.answerOption,
@@ -53,7 +52,7 @@ module.exports = function (app, db) {
     ];
 
     db.query(
-      "INSERT INTO multi_player_game_answers (gameId, attemptId, roundNumber, questionSlot, answerOption, answerValue) VALUES (?)",
+      "INSERT INTO multi_player_game_answers (gameId, roundNumber, questionSlot, answerOption, answerValue) VALUES (?)",
       [values],
       (err, result) => {
         if (err) throw err;

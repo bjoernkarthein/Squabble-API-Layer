@@ -82,4 +82,26 @@ module.exports = function (app, db) {
       }
     );
   });
+
+  app.put("/multi_player_game_questions", function (req, res) {
+    console.log(req.body);
+    const data = req.body.mpq;
+    const values = [
+      data.playerOneRight,
+      data.playerTwoRight,
+      data.gameId,
+      data.questionSlot,
+      data.roundNumber,
+    ];
+
+    db.query(
+      "UPDATE multi_player_game_questions SET playerOneRight = ?, playerTwoRight = ? WHERE gameId = ? AND questionSlot = ? AND roundNumber = ?",
+      values,
+      (err, result) => {
+        if (err) throw err;
+        console.log("Number of records changed: " + result.affectedRows);
+        res.json(data);
+      }
+    );
+  });
 };

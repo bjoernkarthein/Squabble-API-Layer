@@ -82,10 +82,12 @@ module.exports = function (app, db) {
       data.nextTurnId,
       data.questionsAreSet,
       data.turns,
+      data.initiatorPoints,
+      data.opponentPoints,
     ];
 
     db.query(
-      "INSERT INTO multi_player_attempts (initiatorId, opponentId, courseId, inProgress, currentRound, nextTurnId, questionsAreSet, turns) VALUES (?)",
+      "INSERT INTO multi_player_attempts (initiatorId, opponentId, courseId, inProgress, currentRound, nextTurnId, questionsAreSet, turns, initiatorPoints, opponentPoints) VALUES (?)",
       [values],
       (err, result) => {
         if (err) throw err;
@@ -107,11 +109,13 @@ module.exports = function (app, db) {
       data.nextTurnId,
       data.questionsAreSet,
       data.turns,
+      data.initiatorPoints,
+      data.opponentPoints,
       data.gameId,
     ];
 
     db.query(
-      "UPDATE multi_player_attempts SET initiatorId = ?, opponentId = ?, courseId = ?, inProgress = ?, currentRound = ?, nextTurnId = ?, questionsAreSet = ?, turns = ? WHERE gid = ?",
+      "UPDATE multi_player_attempts SET initiatorId = ?, opponentId = ?, courseId = ?, inProgress = ?, currentRound = ?, nextTurnId = ?, questionsAreSet = ?, turns = ?, initiatorPoints = ?, opponentPoints = ? WHERE gid = ?",
       values,
       (err, result) => {
         if (err) throw err;

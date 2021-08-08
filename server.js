@@ -27,6 +27,8 @@ app.get("/", function (req, res) {
 
 // Importing the different endpoints
 require("./endpoints/users")(app, db);
+require("./endpoints/courses")(app, db);
+require("./endpoints/user_courses")(app, db);
 require("./endpoints/single_player_attempts")(app, db);
 require("./endpoints/multi_player_attempts")(app, db);
 require("./endpoints/multi_player_game_questions")(app, db);
