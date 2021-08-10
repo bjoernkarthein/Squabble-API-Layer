@@ -20,6 +20,25 @@ module.exports = function (app, db) {
     });
   });
 
+  app.get("/users/currentUser/:uid/course/:cid", function (req, res) {
+    const uid = req.params.uid;
+    const cid = req.params.cid;
+    db.query(
+      "SELECT * FROM user_courses INNER JOIN users ON user_courses.userId = users.id WHERE courseId=? AND NOT userId=?",
+      [cid, uid],
+      (err, rows) => {
+        if (err) throw err;
+        console.log("Data received from Db:");
+        console.log(rows);
+        if (rows.length <= 0) {
+          res.send({ error: "NO_OTHER_USERS" });
+        } else {
+          res.json(rows);
+        }
+      }
+    );
+  });
+
   app.get("/users/random/currentUser/:uid/course/:cid", function (req, res) {
     const uid = req.params.uid;
     const cid = req.params.cid;
