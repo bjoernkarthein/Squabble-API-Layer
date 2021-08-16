@@ -33,6 +33,7 @@ require("./endpoints/single_player_attempts")(app, db);
 require("./endpoints/multi_player_attempts")(app, db);
 require("./endpoints/multi_player_game_questions")(app, db);
 require("./endpoints/multi_player_game_answers")(app, db);
+require("./endpoints/multi_player_statistics")(app, db);
 require("./endpoints/send_mail")(app, db);
 
 app.listen(PORT, function () {
