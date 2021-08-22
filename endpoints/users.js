@@ -69,9 +69,11 @@ module.exports = function (app, db) {
       user.lastname,
       user.username,
       user.token,
+      user.profileimageurlsmall,
+      user.profileimageurl,
     ];
     db.query(
-      "INSERT INTO users (id, email, firstname, lastname, username, token) VALUES (?)",
+      "INSERT INTO users (id, email, firstname, lastname, username, token, profileimageurlsmall, profileimageurl) VALUES (?)",
       [values],
       (err, result) => {
         if (err) throw err;
