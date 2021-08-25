@@ -9,7 +9,7 @@ module.exports = function (app, db) {
     });
   });
 
-  app.get("/user_courses/:uid", function (req, res) {
+  app.get("/user_courses/user/:uid", function (req, res) {
     const user_id = req.params.uid;
     db.query(
       "SELECT * FROM user_courses WHERE userId=?",
@@ -23,7 +23,7 @@ module.exports = function (app, db) {
     );
   });
 
-  app.get("/user_courses/:cid", function (req, res) {
+  app.get("/user_courses/course/:cid", function (req, res) {
     const course_id = req.params.cid;
     db.query(
       "SELECT * FROM user_courses WHERE courseId=?",
