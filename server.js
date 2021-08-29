@@ -1,6 +1,6 @@
 var express = require("express");
 var app = express();
-const PORT = 5000;
+const PORT = process.env.PORT || 5000;
 var mysql = require("mysql");
 var config = require("./config");
 var bodyParser = require("body-parser");
