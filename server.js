@@ -32,7 +32,7 @@ app.get("/", function (req, res) {
   });
 });
 
-// Importing the different endpoints
+// Importing the different endpoints.
 require("./endpoints/users")(app, db);
 require("./endpoints/courses")(app, db);
 require("./endpoints/user_courses")(app, db);
