@@ -1,10 +1,10 @@
 var nodemailer = require("nodemailer");
 
 var transporter = nodemailer.createTransport({
-  service: "gmail",
+  service: "<YOUR_MAIL_SERVICE>",
   auth: {
-    user: "bjoern.karthein@gmail.com",
-    pass: "hsxephcbiftghgkh",
+    user: "<DEDICATED_MAIL_ADDRESS>",
+    pass: "<DEDICATED_APPLICATION_SPECIFIC_PASSWORD>",
   },
 });
 
@@ -24,7 +24,7 @@ module.exports = function (app, db) {
       inviter.lastname +
       " invited you to play some games.\n" +
       "launch the app to play.\n" +
-      "http://localhost:8100";
+      "<APPLICATION_URL>";
 
     transporter.sendMail(mailOptions, function (error, info) {
       if (error) {
