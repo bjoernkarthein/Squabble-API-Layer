@@ -1,4 +1,5 @@
 module.exports = function (app, db) {
+  // Select all user to course mappings
   app.get("/user_courses", function (req, res) {
     db.query("SELECT * FROM user_courses", (err, rows) => {
       if (err) throw err;
@@ -9,6 +10,7 @@ module.exports = function (app, db) {
     });
   });
 
+  // Select all user to course mappings for the defined user
   app.get("/user_courses/user/:uid", function (req, res) {
     const user_id = req.params.uid;
     db.query(
@@ -23,6 +25,7 @@ module.exports = function (app, db) {
     );
   });
 
+  // Select all user to course mappings for the defined course
   app.get("/user_courses/course/:cid", function (req, res) {
     const course_id = req.params.cid;
     db.query(
@@ -37,6 +40,7 @@ module.exports = function (app, db) {
     );
   });
 
+  // Select the specific user to course mapping for the defined user and course
   app.get("/user_courses/user/:uid/course/:cid", function (req, res) {
     const course_id = req.params.cid;
     const user_id = req.params.uid;
@@ -52,6 +56,7 @@ module.exports = function (app, db) {
     );
   });
 
+  // Create a new user to course mapping
   app.post("/user_courses", function (req, res) {
     var values = [req.body.userId, req.body.courseId];
     db.query(

@@ -1,5 +1,6 @@
 var nodemailer = require("nodemailer");
 
+// Mail server credentials
 var transporter = nodemailer.createTransport({
   service: "<YOUR_MAIL_SERVICE>",
   auth: {
@@ -8,11 +9,13 @@ var transporter = nodemailer.createTransport({
   },
 });
 
+// Defining subject and sender of mail address
 var mailOptions = {
   from: "noreply@squabble.com",
   subject: "Squabble Invitation - Play against your friends!",
 };
 
+// Sends an email to the user in the name of the inviter
 module.exports = function (app, db) {
   app.post("/send_mail", function (req, res) {
     const inviter = req.body.inviter;

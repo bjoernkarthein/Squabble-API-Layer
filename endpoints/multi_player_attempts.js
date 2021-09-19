@@ -1,5 +1,6 @@
 module.exports = function (app, db) {
   app.get("/multi_player_attempts", function (req, res) {
+    // Select all multi-player games
     db.query("SELECT * FROM multi_player_attempts", (err, rows) => {
       if (err) throw err;
 
@@ -9,6 +10,7 @@ module.exports = function (app, db) {
     });
   });
 
+  // Select the multi-player attempt with the defined id
   app.get("/multi_player_attempts/:gid", function (req, res) {
     const id = req.params.gid;
     db.query(
@@ -24,6 +26,7 @@ module.exports = function (app, db) {
     );
   });
 
+  // Select all multi-player games for the user with the given id
   app.get("/multi_player_attempts/user/:uid", function (req, res) {
     const id = req.params.uid;
     db.query(
@@ -39,6 +42,7 @@ module.exports = function (app, db) {
     );
   });
 
+  // Select all multi-player games for one specific course
   app.get("/multi_player_attempts/course/:cid", function (req, res) {
     const id = req.params.cid;
     db.query(
@@ -54,6 +58,7 @@ module.exports = function (app, db) {
     );
   });
 
+  // Select all multi-player games belonging to a specific user inside the defined course
   app.get("/multi_player_attempts/course/:cid/user/:uid", function (req, res) {
     const cid = req.params.cid;
     const uid = req.params.uid;
@@ -70,6 +75,7 @@ module.exports = function (app, db) {
     );
   });
 
+  // Create a new multi-player game entry
   app.post("/multi_player_attempts", function (req, res) {
     console.log(req.body);
     const data = req.body.mpa;
@@ -98,6 +104,7 @@ module.exports = function (app, db) {
     );
   });
 
+  // Alter an existing multi-player game
   app.put("/multi_player_attempts", function (req, res) {
     console.log(req.body);
     const data = req.body.mpa;
@@ -126,6 +133,7 @@ module.exports = function (app, db) {
     );
   });
 
+  // Delete an existing multi-player game and all associated multi-player questions and answers
   app.delete("/multi_player_attempts/:gid", function (req, res) {
     const id = req.params.gid;
     console.log("deleting " + id);

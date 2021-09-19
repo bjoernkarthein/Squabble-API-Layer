@@ -1,5 +1,6 @@
 module.exports = function (app, db) {
   app.get("/multi_player_statistics", function (req, res) {
+    // Select all multi-player statistics
     db.query("SELECT * FROM multi_player_statistics", (err, rows) => {
       if (err) throw err;
 
@@ -9,6 +10,7 @@ module.exports = function (app, db) {
     });
   });
 
+  // Select the multi-player statistic for the defined player and course
   app.get(
     "/multi_player_statistics/user/:uid/course/:cid",
     function (req, res) {
@@ -28,6 +30,7 @@ module.exports = function (app, db) {
     }
   );
 
+  // Select all multi-player statistics for the given course
   app.get("/multi_player_statistics/course/:cid", function (req, res) {
     const id = req.params.cid;
     db.query(
@@ -43,6 +46,7 @@ module.exports = function (app, db) {
     );
   });
 
+  // Create a new multi-player statistic
   app.post("/multi_player_statistics", function (req, res) {
     console.log(req.body);
     const data = req.body.statistic;
@@ -66,6 +70,7 @@ module.exports = function (app, db) {
     );
   });
 
+  // Update an existing multi-player statistic
   app.put("/multi_player_statistics", function (req, res) {
     console.log(req.body);
     const data = req.body.statistic;

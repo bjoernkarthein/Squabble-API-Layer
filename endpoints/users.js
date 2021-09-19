@@ -1,4 +1,5 @@
 module.exports = function (app, db) {
+  // Select all users
   app.get("/users", function (req, res) {
     db.query("SELECT * FROM users", (err, rows) => {
       if (err) throw err;
@@ -9,6 +10,7 @@ module.exports = function (app, db) {
     });
   });
 
+  // Select the user with the given id
   app.get("/users/:id", function (req, res) {
     const id = req.params.id;
     db.query("SELECT * FROM users WHERE id=?", id, (err, rows) => {
@@ -20,6 +22,7 @@ module.exports = function (app, db) {
     });
   });
 
+  // Select all users from the course with the given cid expect the user with the provided uid
   app.get("/users/currentUser/:uid/course/:cid", function (req, res) {
     const uid = req.params.uid;
     const cid = req.params.cid;
@@ -39,6 +42,7 @@ module.exports = function (app, db) {
     );
   });
 
+  // Select a random other user from the course with the given cid
   app.get("/users/random/currentUser/:uid/course/:cid", function (req, res) {
     const uid = req.params.uid;
     const cid = req.params.cid;
@@ -59,6 +63,7 @@ module.exports = function (app, db) {
     );
   });
 
+  // Create a new user
   app.post("/users", function (req, res) {
     console.log(req.body.user);
     const user = req.body.user;

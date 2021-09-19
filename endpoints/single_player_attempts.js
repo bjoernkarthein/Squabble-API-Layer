@@ -1,5 +1,6 @@
 module.exports = function (app, db) {
   app.get("/single_player_attempts", function (req, res) {
+    // Select all single-player attempts
     db.query("SELECT * FROM single_player_attempts", (err, rows) => {
       if (err) throw err;
 
@@ -9,6 +10,7 @@ module.exports = function (app, db) {
     });
   });
 
+  // Select the specific single-player attempt with the given id
   app.get("/single_player_attempts/:aid", function (req, res) {
     const id = req.params.aid;
     db.query(
@@ -24,6 +26,7 @@ module.exports = function (app, db) {
     );
   });
 
+  // Select all single-player attempts for the given user
   app.get("/single_player_attempts/user/:uid", function (req, res) {
     const id = req.params.uid;
     db.query(
@@ -39,6 +42,7 @@ module.exports = function (app, db) {
     );
   });
 
+  // Select all single-player attempts for the given qiz
   app.get("/single_player_attempts/quiz/:qid", function (req, res) {
     const id = req.params.qid;
     db.query(
@@ -54,6 +58,7 @@ module.exports = function (app, db) {
     );
   });
 
+  // Create a new single-player attempt
   app.post("/single_player_attempts", function (req, res) {
     console.log(req.body);
     const data = req.body.spa;

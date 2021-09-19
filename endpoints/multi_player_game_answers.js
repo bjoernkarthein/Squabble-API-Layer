@@ -1,5 +1,6 @@
 module.exports = function (app, db) {
   app.get("/multi_player_game_answers", function (req, res) {
+    // Select all existing multi-player answers
     db.query("SELECT * FROM multi_player_game_answers", (err, rows) => {
       if (err) throw err;
 
@@ -9,6 +10,7 @@ module.exports = function (app, db) {
     });
   });
 
+  // Select all multi-player answers for the defined game
   app.get("/multi_player_game_answers/:gid", function (req, res) {
     const id = req.params.gid;
     db.query(
@@ -24,6 +26,7 @@ module.exports = function (app, db) {
     );
   });
 
+  // Select all multi-player answers for the specified game and round
   app.get("/multi_player_game_answers/:gid/round/:rid", function (req, res) {
     const gid = req.params.gid;
     const rid = req.params.rid;
@@ -40,6 +43,7 @@ module.exports = function (app, db) {
     );
   });
 
+  // Create a new multi-player answer
   app.post("/multi_player_game_answers", function (req, res) {
     console.log(req.body);
     const data = req.body.mpa;
