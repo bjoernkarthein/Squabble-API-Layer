@@ -3,7 +3,7 @@ module.exports = function (app, db) {
     db.query("SELECT * FROM multi_player_statistics", (err, rows) => {
       if (err) throw err;
 
-      console.log("Data received from Db:");
+      console.log("Data received from db (statistics):");
       console.log(rows);
       res.json(rows);
     });
@@ -20,7 +20,7 @@ module.exports = function (app, db) {
         (err, rows) => {
           if (err) throw err;
 
-          console.log("Data received from Db:");
+          console.log("Data received from db (statistics):");
           console.log(rows);
           res.json(rows);
         }
@@ -36,7 +36,7 @@ module.exports = function (app, db) {
       (err, rows) => {
         if (err) throw err;
 
-        console.log("Data received from Db:");
+        console.log("Data received from db (statistics):");
         console.log(rows);
         res.json(rows);
       }
@@ -84,6 +84,7 @@ module.exports = function (app, db) {
       (err, result) => {
         if (err) throw err;
         console.log("Number of records changed: " + result.affectedRows);
+        console.log("statistics updated successfully");
         res.json(data);
       }
     );

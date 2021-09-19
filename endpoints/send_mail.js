@@ -9,8 +9,8 @@ var transporter = nodemailer.createTransport({
 });
 
 var mailOptions = {
-  from: "noreply@competitive-quiz.com",
-  subject: "Competitive Quiz Invitation",
+  from: "noreply@squabble.com",
+  subject: "Squabble Invitation - Play against your friends!",
 };
 
 module.exports = function (app, db) {

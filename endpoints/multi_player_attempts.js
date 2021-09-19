@@ -17,7 +17,7 @@ module.exports = function (app, db) {
       (err, rows) => {
         if (err) throw err;
 
-        console.log("Data received from Db:");
+        console.log("Data received from db (multiplayer attempts):");
         console.log(rows);
         res.json(rows);
       }
@@ -32,7 +32,7 @@ module.exports = function (app, db) {
       (err, rows) => {
         if (err) throw err;
 
-        console.log("Data received from Db:");
+        console.log("Data received from db (multiplayer attempts):");
         console.log(rows);
         res.json(rows);
       }
@@ -47,7 +47,7 @@ module.exports = function (app, db) {
       (err, rows) => {
         if (err) throw err;
 
-        console.log("Data received from Db:");
+        console.log("Data received from db (multiplayer attempts):");
         console.log(rows);
         res.json(rows);
       }
@@ -63,7 +63,7 @@ module.exports = function (app, db) {
       (err, rows) => {
         if (err) throw err;
 
-        console.log("Data received from Db:");
+        console.log("Data received from db (multiplayer attempts):");
         console.log(rows);
         res.json(rows);
       }
@@ -92,6 +92,7 @@ module.exports = function (app, db) {
       (err, result) => {
         if (err) throw err;
         console.log("Number of records inserted: " + result.affectedRows);
+        console.log("attempt created sucessfully");
         res.json(data);
       }
     );
@@ -121,6 +122,39 @@ module.exports = function (app, db) {
         if (err) throw err;
         console.log("Number of records changed: " + result.affectedRows);
         res.json(data);
+      }
+    );
+  });
+
+  app.delete("/multi_player_attempts/:gid", function (req, res) {
+    const id = req.params.gid;
+    console.log("deleting " + id);
+    db.query(
+      "DELETE FROM multi_player_attempts WHERE gid = ?",
+      id,
+      (err, rows) => {
+        if (err) throw err;
+        console.log("Records deleted (multiplayer attempts)");
+      }
+    );
+
+    db.query(
+      "DELETE FROM multi_player_game_questions WHERE gameId = ?",
+      id,
+      (err, rows) => {
+        if (err) throw err;
+        console.log("Records deleted (multiplayer attempts)");
+      }
+    );
+
+    db.query(
+      "DELETE FROM multi_player_game_questions WHERE gameId = ?",
+      id,
+      (err, rows) => {
+        if (err) throw err;
+        console.log("Records deleted (multiplayer attempts):");
+        console.log(id);
+        res.json(id);
       }
     );
   });

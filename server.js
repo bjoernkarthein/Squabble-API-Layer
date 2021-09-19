@@ -15,10 +15,11 @@ db.connect(function (err) {
 const cors = require("cors");
 app.use(
   cors({
-    origin: ["https://squabble-20ace.web.app", "http://localhost:8100"],
+    origin: ["http://localhost:8100"],
   })
 );
 
+app.use(express.json());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
